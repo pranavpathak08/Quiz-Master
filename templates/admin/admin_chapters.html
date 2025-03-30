@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Chapters</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url_for('admin.admin_dashboard') }}">Quiz Master</a>
+            <div class="ms-auto d-flex align-items-center">
+                <span class="text-white me-3">Welcome, Admin</span>
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-danger btn-sm">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Chapters under <span class="text-primary">{{ subject.name }}</span></h2>
+
+        <!-- Add New Chapter Button -->
+        <div class="d-flex justify-content-between mb-3">
+            <a href="{{ url_for('admin.add_chapter', subject_id=subject.id) }}" class="btn btn-primary">Add New Chapter</a>
+            <a href="{{ url_for('admin.manage_subjects') }}" class="btn btn-secondary">Back to Subjects</a>
+        </div>
+
+        <!-- Chapters Table -->
+        <table class="table table-bordered text-center table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chapter in subject.chapters %}
+                <tr>
+                    <td>{{ chapter.id }}</td>
+                    <td>{{ chapter.name }}</td>
+                    <td>{{ chapter.description }}</td>
+                    <td>
+                        <a href="{{ url_for('admin.manage_quizzes', chapter_id=chapter.id) }}" class="btn btn-info btn-sm">View Quizzes</a>
+                        <a href="{{ url_for('admin.edit_chapter', id=chapter.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ url_for('admin.delete_chapter', id=chapter.id) }}" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

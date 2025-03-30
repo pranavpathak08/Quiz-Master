@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Chapter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url_for('admin.admin_dashboard') }}">Quiz Master</a>
+            <div class="ms-auto d-flex align-items-center">
+                <span class="text-white me-3">Welcome, Admin</span>
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-danger btn-sm">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+<div class="container my-5">
+    <div class="card shadow-lg p-4">
+        <h3 class="text-center mb-4">📖 Select Chapter to Add Quiz</h3>
+
+        <div class="table-responsive">
+            <table class="table table-striped text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Subject</th>
+                        <th>Chapter</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for chapter in chapters %}
+                    <tr>
+                        <td>{{ chapter.subject_name }}</td>
+                        <td>{{ chapter.name }}</td>
+                        <td>
+                            <a href="{{ url_for('admin.add_quiz', chapter_id=chapter.id) }}" class="btn btn-success btn-sm">➕ Add Quiz</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{{ url_for('admin.manage_quizzes_all') }}" class="btn btn-primary">📜 View All Quizzes</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

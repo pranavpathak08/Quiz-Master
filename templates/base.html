@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ url_for('admin.admin_dashboard') }}" class="logo">Quiz Master - Admin</a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('admin.manage_subjects') }}">Manage Subjects</a></li>
+                <li><a href="#">Manage Users</a></li>
+                <li><a href="{{ url_for('admin.manage_quizzes_all') }}">Manage Quizzes</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="dashboard-container">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, Admin! You can manage the following:</p>
+        <div class="dashboard-links">
+            <a href="{{ url_for('admin.manage_subjects') }}" class="dashboard-card">Manage Subjects</a>
+            <a href="#" class="dashboard-card">Manage Users</a>
+            <a href="{{ url_for('admin.manage_quizzes_all') }}" class="dashboard-card">Manage Quizzes</a>
+        </div>
+    </div>
+</body>
+</html>

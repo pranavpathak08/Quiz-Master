@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body text-center p-5">
+                        <h1 class="text-primary fw-bold">Quiz Completed!</h1>
+                        <p class="fs-3 mt-3">Your Score:</p>
+                        <p class="display-3 fw-bold {% if score >= 50 %}text-success{% else %}text-danger{% endif %}">
+                            {{ score }}
+                        </p>
+                        <a href="{{ url_for('user.user_dashboard') }}" class="btn btn-dark btn-lg mt-3">⬅️ Back to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
